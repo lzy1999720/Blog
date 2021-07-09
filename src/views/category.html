@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分类</title>
+</head>
+<body>
+  {{ extend './index.html' }}
+  {{ block 'cons' }}
+  <div class="category">
+    <div class="categoryheader">
+      {{ if type == 'c'}}
+      <h3>{{ type+'#' }}</h3>
+      {{ else }}
+      <h3>{{ type }}</h3>
+      {{ /if }}
+    </div>
+    {{ each categoryitem  }}
+    <div class="categorycon">
+      <div class="catleft">
+        <div class="catleft_top">{{@ $value.title }}</div>
+        <div class="catleft_cen">{{@ $value.content }}</div>
+        <div class="catleft_bot">{{ $value.releasetime }}  {{ $value.fabulous }}</div>
+      </div>
+      <div class="catright">
+        <img src="{{ $value.apictureurl }}" />
+      </div>
+    </div>
+    {{ /each }}
+    <div class="categorybottom">
+      {{ if page == 1 }}
+      <a href="/category?id={{ id }}&page={{page+1}}&type={{ type }}">下一页</a>
+      {{ else }}
+      <a href="/category?id={{ id }}&page={{page-1}}&type={{ type }}">上一页</a> 
+      <a href="/category?id={{ id }}&page={{page+1}}&type={{ type }}">下一页</a>
+      {{ /if }}
+    </div>
+  </div>
+  {{ /block }}
+</body>
+</html>

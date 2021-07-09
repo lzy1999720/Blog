@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
+  <title>原小白</title>
+  <link rel="stylesheet" href="../public/css/index.css" type="text/css" />
+  <link rel="stylesheet" href="../public/css/swiper-bundle.min.css" type="text/css" />
+</head>
+
+<body>
+  {{ include './common/header.html' }}
+  {{ block 'cons' }}
+  {{ include './common/carousel.html' }}
+  <div class="center_content">
+    {{ block 'con' }}
+    <div class="c_left">
+      <div class="hotbox">
+        <div class="classify">
+          <h4>最热博文</h4>
+          <a href="">更多<img class="more" src="../public/images/更多.svg" alt="" /></a>
+        </div>
+        {{ each hots }}
+        <a href="/details?id={{ $value.aid }} " class="hotitembox">
+          <div class="timg"><img src="{{ $value.apictureurl }}" alt="" /></div>
+          <div class="tit">
+            <h1>{{@ $value.title }}</h1>
+            <span>{{@ $value.content }}</span>
+            <div class="titbottom">
+              <p><img class="publishtime" src="../public/images/时间.svg" alt="" />{{ $value.releasetime }}</p>
+              <div><img src="../public/images/赞.svg" alt="" />{{ $value.fabulous }}</div>
+            </div>
+          </div>
+        </a>
+        {{ /each }}
+      </div>
+      <div class="newbox">
+        <div class="newstoptitle">
+          <h4>最新博文</h4>
+          <a href="">更多<img class="more" src="../public/images/更多.svg" alt="" /></a>
+        </div>
+        {{ each news }}
+        <div class="newsitembox">
+          <a href="/details?id={{ $value.aid }}">
+            <div class="newsimgbox"><img src="{{ $value.apictureurl }}" alt="{{ $value.apictureurl }}" /></div>
+            <div class="newsconright">
+              <div class="contop">{{@ $value.title }}</div>
+              <div class="concenter">{{@ $value.content }}</div>
+              <div class="conbottom">
+                <p><img class="publishtime" src="../public/images/时间.svg" alt="" />{{ $value.releasetime }}</p>
+                <div><img src="../public/images/赞.svg" />{{ $value.fabulous }}</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {{ /each }}
+      </div>
+    </div>
+    {{ /block }}
+    <div class="c_right">
+      <div class="timeshow">
+        <span>19:45:20</span>
+        <span>Hours minutes seconds</span>
+      </div>
+    </div>
+  </div>
+  {{ /block }}
+  {{ include './common/footer.html' }}
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../public/js/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
+  <script src="../public/js/plugconfig.js" ></script>              <!-- 插件配置 -->
+
+  <script src="../public/js/index.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script> -->
+  <!-- <script>
+    function addDarkmodeWidget() {
+      new Darkmode().showWidget();
+    }
+    window.addEventListener('load', addDarkmodeWidget);
+  </script> -->
+</body>
+
+</html>

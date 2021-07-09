@@ -1,0 +1,32 @@
+<header>
+  <nav class="left">
+    原小白
+  </nav>
+  <nav class="center">
+    {{ each menus }}
+    {{ if $index == 1 }}
+    <div class="menucatryoge">
+      <a class="menula" href="/">{{ $value.mvalue }}</a>
+      {{ each menuscategory }}
+      <div>
+        <a href="/category?page={{1}}&type={{$value.aclassvalue}}">{{ $value.aclassvalue }}</a>
+      </div>
+      {{ /each }}
+    </div>
+    {{ else }}
+    <a href="{{ $value.mlink }}">{{ $value.mvalue }}</a>
+    {{ /if }}
+    {{ /each }}
+  </nav>
+  <nav class="right">
+    <form class="search" action="/search" method="post">
+      <input type="search" name="title" placeholder="Enter..." maxlength="8">
+    </form>
+    <!-- <form class="signin" action="/signin" method="post">
+      <input  type="submit" value="登录" />
+    </form>
+    <form class="register">
+      <input  type="submit" value="注册" />
+    </form> --> 
+  </nav>
+</header>

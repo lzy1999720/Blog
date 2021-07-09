@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>归档</title>
+	</head>
+	<body>
+		{{ each classifictions }}
+		<ul>
+			<h3>{{ $value.releasetime }}</h3>
+			{{ each $value.sublist }}
+			<li>{{ $value.title }}</li>
+			{{ /each }}
+		</ul>
+		{{ /each }}
+	</body>
+	<script>
+	</script>
+</html>

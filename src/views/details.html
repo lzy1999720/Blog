@@ -1,0 +1,79 @@
+{{ extend('./index.html') }}
+
+{{ block 'con'}}
+{{ each details }}
+<div class="detail">
+  <div class="current">
+    <span>当前位置：</span>
+    <a href="">首页<img src="../public/images/大于号.svg" /></a>
+    <a href="">web前端<img src="../public/images/大于号.svg" /></a>
+    <span>正文</span>
+  </div>
+  <div class="detailtitle">{{ $value.title }}</div>
+  <div class="detailcs">
+    <span>发布时间:{{ $value.releasetime }}</span>
+    <span>评论:36</span>
+    <span>赞:{{ $value.fabulous }}</span>
+  </div>
+  <div class="detailimg">
+    <img src="{{ $value.apictureurl }}" />
+  </div>
+  <div class="detailcon">
+    {{@ $value.content }}
+  </div>
+  <div class="messageinfo">
+    <div class="userinformation">
+      <form action="/addleaveword?id={{ $value.aid }}" method="post">
+        <label><input type="text" class="te" name="name" placeholder="昵称(必填)" required maxlength="10" /></label>
+        <label><input type="text" class="te" name="email" placeholder="邮箱(必填,完全保密)" required maxlength="20" /></label>
+        <div class="exit"></div>
+        <textarea class="messageinput" name="value" placeholder="想说就说点什么吧！" maxlength="100"></textarea>
+        <input type="submit" class="submit" value="提交" />
+      </form>
+    </div>
+  </div>
+  <div class="leaveword">
+    {{ each leavewords }}
+    <div class="leaveworditem">
+      <div class="itemleft">
+        {{ if $value.isexamine }}
+        <div class="topuser">
+          <div class="headportrait"><img src="../public/images/默认头像.svg" /></div>
+          <div class="userbase">
+            <span>{{ $value.user }}</span>
+            <span>{{ $value.ltime }}</span>
+          </div>
+        </div>
+        <div class="leavevalue">{{ $value.lvalue }}
+          {{ each $value.sublist }}
+          <div class="topuseritem">
+            <div class="headportrait"><img src="../public/images/默认头像.svg" /></div>
+            <div class="userbase">
+              <span>{{ $value.user }}</span>
+              <span>{{ $value.ltime }}</span>
+            </div>
+          </div>
+          <div class="leavevalueitem">{{ $value.lvalue }}</div>
+          {{ /each }}
+          <div class="userpl">
+            <div class="userinformation">
+              <form action="/addreply?rlid={{ $value.lid }}&id={{ $value.aid }}" method="post">
+                <label><input type="text" class="te" name="name" placeholder="昵称(必填)" required maxlength="10" /></label>
+                <label><input type="text" class="te" name="email" placeholder="邮箱(必填,完全保密)" required
+                    maxlength="20" /></label>
+                <div class="exit"></div>
+                <textarea class="messageinput" name="value" placeholder="想说就说点什么吧！" maxlength="100"></textarea>
+                <input type="submit" class="submit" value="提交" />
+              </form>
+            </div>
+          </div>
+        </div>
+        {{/if}}
+      </div>{{ if $value.isexamine }}
+      <div class="itemright"><span>回复</span></div>{{/if}}
+    </div>
+    {{ /each }}
+  </div>
+</div>
+{{ /each }}
+{{ /block }}
